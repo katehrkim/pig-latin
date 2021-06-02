@@ -1,17 +1,43 @@
 # Rewrite this in Unit Test
-
+import unittest
 from pig_latin import translate
 
-print(f"translates a word beginning with a vowel: {translate('apple') == 'appleay'}")
-print(f"translates a word beginning with a consonant: {translate('banana') == 'ananabay'}")
-print(f"translates a word beginning with two consonants: {translate('cherry') == 'errychay'}")
-print(f"translates two words: {translate('eat pie') == 'eatay iepay'}")
-print(f"translates a word beginning with three consonants: {translate('three') == 'eethray'}")
-print(f"counts 'sch' as a single phoneme: {translate('school') == 'oolschay'}")
-print(f"counts 'qu' as a single phoneme: {translate('quiet') == 'ietquay'}")
-print(f"counts 'qu' as a consonant even when it's preceded by a consonant: {translate('square') == 'aresquay'}")
-print(f"translates many words: {translate('the quick brown fox') == 'ethay ickquay ownbray oxfay'}")
+class PigLatinTestCase(unittest.TestCase):
+    """Tests for pig_latin.py"""
+
+    def test_begin_vowel(self):
+        self.assertEqual(translate('apple'), 'appleay')
+    
+    def test_begin_consonant(self):
+        self.assertEqual(translate('banana'), 'ananabay')
+    
+    def test_begin_two_consonants(self):
+        self.assertEqual(translate('cherry'), 'errychay')
+    
+    def test_two_words(self):
+        self.assertEqual(translate('eat pie'), 'eatay iepay')
+
+    def test_begin_three_consonants(self):
+        self.assertEqual(translate('three'), 'eethray')
+    
+    def test_count_sch_as_single_phoneme(self):
+        self.assertEqual(translate('school'), 'oolschay')
+    
+    def test_count_qu_as_single_phoneme(self):
+        self.assertEqual(translate('quiet'), 'ietquay')
+    
+    def test_count_qu_as_consonant_when_preceded_by_consonant(self):
+        self.assertEqual(translate('square'), 'aresquay')
+    
+    def test_translate_many_words(self):
+        self.assertEqual(translate('the quick brown fox'), 'ethay ickquay ownbray oxfay')
 
 # write a test asserting that capitalized words are still capitalized
 # (but with a different initial capital letter, of course) retain the
 # punctuation from the original phrase
+
+    def cap_are_still_cap(self):
+        self.assertEqual(translate('SQUARE'), 'ARESQUAY')
+    
+if __name__ == '__main__':
+    unittest.main()
